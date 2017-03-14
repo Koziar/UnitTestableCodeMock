@@ -21,7 +21,7 @@ public class JokeFetcher {
      * moma: Fetch a "MOMA" joke. Defenitely never political correct ;-)
      * tambal: Just random jokes
      */
-    private final List<String> availableTypes = Arrays.asList("eduprog", "chucknorris", "moma", "tambal");
+    private final List<String> availableTypes = Arrays.asList("EduJoke", "ChuckNorris" , "Moma" , "Tambal");
 
     private IDateFormatter dateFormatter;
     private IFetcherFactory factory;
@@ -43,14 +43,14 @@ public class JokeFetcher {
     /**
      * Verifies whether a provided value is a valid string (contained in availableTypes)
      *
-     * @param jokesToFetch - Example (with valid values only): "eduprog,chucknorris,chucknorris,moma,tambal"
+     * @param jokeTokens - Example (with valid values only): "eduprog,chucknorris,chucknorris,moma,tambal"
      * @return true if the param was a valid value, otherwise false
      */
-    boolean checkIfValidToken(String jokesToFetch) throws JokeException {
-        String[] tokens = jokesToFetch.split(",");
-        for (String token : tokens) {
-            if (!availableTypes.contains(token)) {
-                throw new JokeException("Inputs (" + jokesToFetch + ") contain types not recognized");
+    boolean isStringValid(String jokeTokens) throws JokeException {
+        String[] tokens = jokeTokens.split(",");
+        for(String token: tokens){
+            if(!availableTypes.contains(token)){
+                return false;
             }
         }
         return true;
@@ -67,7 +67,7 @@ public class JokeFetcher {
      * @throws JokeException - Thrown if either of the two input arguments contains illegal values
      */
     public Jokes getJokes(String jokesToFetch, String timeZone) throws JokeException {
-        checkIfValidToken(jokesToFetch);
+        isStringValid(jokesToFetch);
         Jokes jokes = new Jokes();
         for (IJokeFetcher fetcher : factory.getJokeFetchers(jokesToFetch)) {
             jokes.addJoke(fetcher.getJoke());
@@ -88,6 +88,6 @@ public class JokeFetcher {
         jokes.getJokes().forEach((joke) -> {
             System.out.println(joke);
         });
-        System.out.println("Is String Valid: " + jf.checkIfValidToken("edu_prog,xxx"));
+        System.out.println("Is String Valid: " + jf.isStringValid("edu_prog,xxx"));
     }
 }
