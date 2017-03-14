@@ -1,4 +1,7 @@
-# startCodeForTesting1
-This project contains start code for an exercise given at cphbusiness.dk for the educations:
-* AP degree in Computer Science
-* Top-up Bachelor's degree in Software Developement
+## Unit Testable Code Mock
+https://docs.google.com/document/d/1F9AEYBLUskDpZSbKI45Z4ibbQYUXIoB1f_kJLcSRyqc/edit
+
+# Question answers
+  *
+  *
+  *
